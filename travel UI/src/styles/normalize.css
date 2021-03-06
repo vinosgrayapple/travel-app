@@ -1,0 +1,9 @@
+* {
+    font-size: 10px;
+    font-family: 'PT-Lato';
+    padding: 0;
+}
+.wrapper {
+    background: url(../media/img/atmosfera-mir-karta.jpg)  center/cover;
+    height: 100vh;
+}
