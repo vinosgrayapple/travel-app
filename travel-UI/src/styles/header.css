@@ -1,0 +1,10 @@
+.card-title {
+    width: max-content;
+    font-size: 4rem;
+    color: rgb(0, 0, 0);
+    font-weight: 900;
+    margin: 0 auto;
+    padding-top: 1rem;
+    opacity: 0.8;
+}
+
