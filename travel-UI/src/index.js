@@ -1,17 +1,17 @@
-import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
-import 'styles/index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import App from './App';
-import './i18next';
-import { Provider } from 'react-redux';
-import store from 'store';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './styles/body.css'
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import Main from './pages/Main'
+// import SignIn from './components/auth/SignIn'
+// import SignUp from './components/auth/SignUp'
+import SignIn from './components/auth/SignIn'
 
 ReactDOM.render(
-  <Suspense fallback={() => {}}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </Suspense>,
+  <React.StrictMode>
+    {/*  <Main /> */}
+    {/* <SignUp /> */}
+    <SignIn />
+  </React.StrictMode>,
   document.getElementById('root')
-);
+)
