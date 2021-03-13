@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -14,6 +14,8 @@ import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import PublicIcon from '@material-ui/icons/Public'
+import {AuthContext} from '../../context/AuthContext'
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1
@@ -80,6 +82,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar () {
   const classes = useStyles()
+  const auth = useContext(AuthContext)
+
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
@@ -114,7 +118,8 @@ export default function PrimarySearchAppBar () {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={auth.logout}>LogOut</MenuItem>
+      {/* onClick={handleMenuClose} */}
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   )
@@ -146,16 +151,18 @@ export default function PrimarySearchAppBar () {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      {/* <MenuItem onClick={handleProfileMenuOpen}> */}
+      <MenuItem onClick={auth.logout}>
         <IconButton
           aria-label='account of current user'
           aria-controls='primary-search-account-menu'
           aria-haspopup='true'
           color='inherit'
+         
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Выйти</p>
       </MenuItem>
     </Menu>
   )

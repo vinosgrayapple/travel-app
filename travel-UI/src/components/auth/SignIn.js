@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useContext } from 'react'
+import {AuthContext} from '../../context/AuthContext'
 import { useHttp } from '../../hooks/http.hook'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Checkbox from '@material-ui/core/Checkbox';
-// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-// import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -51,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp () {
   const classes = useStyles()
+  const auth = useContext(AuthContext)
+  console.log('auth context =>', auth);
   const { loading, error, request } = useHttp()
   const [form, setForm] = useState({
     email: '',
@@ -88,6 +87,7 @@ export default function SignUp () {
       console.log('On a board')
       const data = await request(URL, 'POST', { ...form })
       console.log('DATA => ', data)
+      auth.login(data.token, data.userId)
       if (data.message) {
         snackBar(data.message, 'success')
       }
@@ -100,7 +100,7 @@ export default function SignUp () {
         <RS src={logo} className={classes.avatar} />
         {/* <LockOutlinedIcon /> */}
         <Typography component='h1' variant='h5'>
-          Регистрация
+          Вход
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>

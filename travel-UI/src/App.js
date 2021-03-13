@@ -1,20 +1,19 @@
-import Main from 'pages/Main';
-import Country from 'pages/Counrty';
-import ROUTES from 'constants/routes';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
-
+import {BrowserRouter as Router} from 'react-router-dom'
+import {useRoutes} from './routes'
+import {useAuth} from './hooks/auth.hook'
+import {AuthContext} from './context/AuthContext'
 const App = () => {
+  const {token, login, logout, userId} = useAuth()
+  const isAuthenticated = !!token
+  const routes = useRoutes(isAuthenticated)
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path={ROUTES.MAIN}>
-          <Main />
-        </Route>
-        <Route path={ROUTES.COUNTRY}>
-          <Country />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <AuthContext.Provider value={{
+      token, login, logout, userId, isAuthenticated
+    }}>
+    <Router>
+      {routes}
+    </Router>
+    </AuthContext.Provider>
   );
 };
 
