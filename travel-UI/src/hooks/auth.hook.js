@@ -6,7 +6,7 @@ const [userId, setUserId] = useState(null)
 const login = useCallback((jwtToken, id)=>{
 setToken(jwtToken)
 setUserId(id)
-console.log('inLogin => ',jwtToken, id);
+// console.log('inLogin => ',jwtToken, id);
 localStorage.setItem(storageName, JSON.stringify({userId:id, token:jwtToken}))
 },[])
 const logout = useCallback(()=>{

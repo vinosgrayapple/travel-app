@@ -1,16 +1,14 @@
 import React from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Footer from './Footer'
-import Bar from './Bar'
+// import Footer from './Footer'
+// import Bar from './Bar'
 import Content from './Content'
 
 function Main () {
   return (
     <>
       <CssBaseline />
-      <Bar />
         <Content />
-      <Footer/>
     </>
   )
 }

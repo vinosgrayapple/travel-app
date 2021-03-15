@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const cards = Array.from('1'.repeat(100)).map((_, i) => i + 1)// [1, 2, 3,4,5,6,]
+const cards = Array.from('1'.repeat(10)).map((_, i) => i + 1)// [1, 2, 3,4,5,6,]
 function Content () {
   const classes = useStyles()
 

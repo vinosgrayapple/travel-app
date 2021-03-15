@@ -1,20 +1,18 @@
 import React,{useContext} from 'react'
+import {Redirect, Link} from 'react-router-dom'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
 import InputBase from '@material-ui/core/InputBase'
-import Badge from '@material-ui/core/Badge'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import MailIcon from '@material-ui/icons/Mail'
-import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
-import PublicIcon from '@material-ui/icons/Public'
 import {AuthContext} from '../../context/AuthContext'
+import LDialogDemo from './SelectEng'
+import logo from './img/label3.png'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -99,6 +97,7 @@ export default function PrimarySearchAppBar () {
   }
 
   const handleMenuClose = () => {
+    <Redirect to="/signup"/>
     setAnchorEl(null)
     handleMobileMenuClose()
   }
@@ -118,9 +117,9 @@ export default function PrimarySearchAppBar () {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={auth.logout}>LogOut</MenuItem>
-      {/* onClick={handleMenuClose} */}
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem  component={Link} to="/signup" onClick={handleMenuClose}>Регистрация</MenuItem>
+      <MenuItem component={Link} to="/signin" onClick={handleMenuClose}>Войти</MenuItem>
+      <MenuItem onClick={auth.logout}>Выйти</MenuItem>
     </Menu>
   )
 
@@ -135,30 +134,23 @@ export default function PrimarySearchAppBar () {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label='show 4 new mails' color='inherit'>
-          <Badge badgeContent={4} color='secondary'>
-            <MailIcon />
-          </Badge>
+      <MenuItem >
+        <IconButton
+          aria-label='account of current user'
+          aria-controls='primary-search-account-menu'
+          aria-haspopup='true'
+          color='inherit'
+        >
+          <AccountCircle />
         </IconButton>
-        <p>Messages</p>
+        <p>Выйти</p>
       </MenuItem>
-      <MenuItem>
-        <IconButton aria-label='show 11 new notifications' color='inherit'>
-          <Badge badgeContent={11} color='secondary'>
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      {/* <MenuItem onClick={handleProfileMenuOpen}> */}
       <MenuItem onClick={auth.logout}>
         <IconButton
           aria-label='account of current user'
           aria-controls='primary-search-account-menu'
           aria-haspopup='true'
           color='inherit'
-         
         >
           <AccountCircle />
         </IconButton>
@@ -171,13 +163,15 @@ export default function PrimarySearchAppBar () {
     <div className={classes.grow}>
       <AppBar position='static'>
         <Toolbar>
-
-          <IconButton edge='start' className={classes.menuButton} color='inherit' aria-label='open drawer'>
+        <Link to="/">
+          <img src={logo} height="50" alt="logo" className={classes.menuButton} />
+        </Link>
+          {/* <IconButton edge='start' className={classes.menuButton} color='inherit' aria-label='open drawer'>
             <PublicIcon />
-          </IconButton>
-          <Typography className={classes.title} variant='h6' noWrap>
+          </IconButton> */}
+          {/* <Typography className={classes.title} variant='h6' noWrap>
             Travel App
-          </Typography>
+          </Typography> */}
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -192,6 +186,7 @@ export default function PrimarySearchAppBar () {
             />
           </div>
           <div className={classes.grow} />
+          <LDialogDemo/>
           <div className={classes.sectionDesktop}>
             <IconButton
               edge='end'
