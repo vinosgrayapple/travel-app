@@ -70,13 +70,13 @@ const history = useHistory()
   const registerhandler = async (e) => {
     e.preventDefault()
     // const URL = 'https://travel-app-back.herokuapp.com/api/auth/register'
-    const URL = 'http://localhost:3333/api/auth/register'
+    const URL = 'https://travel-app-back.herokuapp.com/api/auth/register'
     try {
       console.log('On a board')
       const data = await request(URL, 'POST', { ...form })
       console.log('data =>', data);
       if (data._id) {
-          const URL = 'http://localhost:3333/api/auth/login'
+          const URL = 'https://travel-app-back.herokuapp.com/api/auth/login'
         console.log(form);
           const data = await request(URL, 'POST', { ...form })
           const {token, userId} = data

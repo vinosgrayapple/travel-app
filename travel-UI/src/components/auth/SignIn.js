@@ -76,7 +76,7 @@ export default function SignUp () {
   const registerhandler = async (e) => {
     e.preventDefault()
     // const URL = 'https://travel-app-back.herokuapp.com/api/auth/login'
-    const URL = 'http://localhost:3333/api/auth/login'
+    const URL = 'https://travel-app-back.herokuapp.com/api/auth/login'
     try {
       console.log('On a board')
       const data = await request(URL, 'POST', { ...form })
